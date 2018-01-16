@@ -1,13 +1,16 @@
 {
     "name": "laravel/lumen",
     "description": "The Laravel Lumen Framework.",
-    "keywords": ["framework", "laravel", "lumen"]);
+    "keywords": ["framework", "laravel", "lumen"],
     "license": "MIT",
     "type": "project",
     "require": {
         "php": ">=7.0",
         "laravel/lumen-framework": "5.5.*",
-        "vlucas/phpdotenv": "~2.2"
+        "vlucas/phpdotenv": "~2.2",
+        "guzzlehttp/guzzle": "^6.3",
+        "symfony/dom-crawler": "^4.0",
+        "symfony/css-selector": "^4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
