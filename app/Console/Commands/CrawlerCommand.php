@@ -16,11 +16,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DomCrawler\Crawler;
 
-class CrawlerCommand extends Command
+class CrawlerCommand extends BaseCrawlerCommand
 {
     protected $name = 'app:crawl';
-
-    private $hostname = 'https://exist.ru';
 
     public function run(InputInterface $input, OutputInterface $output)
     {

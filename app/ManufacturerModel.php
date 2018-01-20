@@ -15,12 +15,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property int id
  * @property string name
  * @property string manufactured_years
+ * @property mixed href
+ * @property string content
  */
 class ManufacturerModel extends Model
 {
-    protected $fillable = ['name', 'code', 'thumbnail', 'href', 'manufactured_years', 'manufacturer_id'];
 
     protected $table = 'models';
+
+    protected $fillable = ['name', 'code', 'thumbnail', 'href', 'manufactured_years', 'manufacturer_id', 'model_designation_id'];
 
     public $timestamps = false;
 }
