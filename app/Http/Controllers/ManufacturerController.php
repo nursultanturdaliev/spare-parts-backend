@@ -13,26 +13,35 @@ use App\Manufacturer;
 use App\ManufacturerModel;
 use App\Transformers\ManufacturerModelTransformer;
 use App\Transformers\ManufacturerTransformer;
+use http\Env\Response;
 use Illuminate\Http\JsonResponse;
 use League\Fractal\Resource\Collection;
+use League\Fractal\Resource\Item;
 
 class ManufacturerController extends Controller
 {
     public function all()
     {
         $manufacturers = Manufacturer::all();
-        $resource = new Collection($manufacturers, new ManufacturerTransformer(), 'manufacturer');
+        $resource = new Collection($manufacturers, new ManufacturerTransformer(), 'manufacturers');
 
 
         return new JsonResponse($this->getManager()->createData($resource)->toArray());
     }
 
-    public function models($id)
+    public function show($id)
     {
-        $models = ManufacturerModel::where('manufacturer_id', $id)->get();
 
-        $resource = new Collection($models, new ManufacturerModelTransformer(), 'model');
+        $manufacturer = Manufacturer::find($id);
 
-        return new JsonResponse($this->getManager()->createData($resource)->toArray());
+        if (!$manufacturer instanceof Manufacturer) {
+            return new JsonResponse([], 404);
+        }
+
+        $resource = new Item($manufacturer, new ManufacturerTransformer(), 'manufacturers');
+        $manager = $this->getManager();
+        $manager->parseIncludes('models');
+
+        return new JsonResponse($manager->createData($resource)->toArray());
     }
 }

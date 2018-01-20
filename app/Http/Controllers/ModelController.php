@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\ManufacturerModel;
 use App\Transformers\ManufacturerModelTransformer;
+use App\Transformers\ModelItemTransformer;
 use Illuminate\Http\JsonResponse;
 use League\Fractal\Resource\Item;
 
@@ -20,7 +21,7 @@ class ModelController extends Controller
     {
         $model = ManufacturerModel::find($id);
 
-        $resource = new Item($model,new ManufacturerModelTransformer(),'model');
+        $resource = new Item($model, new ModelItemTransformer(), 'models');
 
         return new JsonResponse($this->getManager()->createData($resource)->toArray());
     }

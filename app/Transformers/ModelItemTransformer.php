@@ -12,8 +12,9 @@ namespace App\Transformers;
 use App\ManufacturerModel;
 use League\Fractal\TransformerAbstract;
 
-class ManufacturerModelTransformer extends TransformerAbstract
+class ModelItemTransformer extends TransformerAbstract
 {
+    protected $defaultIncludes = ['designations'];
 
     public function transform(ManufacturerModel $model)
     {
@@ -22,5 +23,14 @@ class ManufacturerModelTransformer extends TransformerAbstract
             'name' => $model->name,
             'manufactured_years' => $model->manufactured_years
         ];
+    }
+
+    /**
+     * @param ManufacturerModel $model
+     * @return \League\Fractal\Resource\Collection
+     */
+    public function includeDesignations(ManufacturerModel $model)
+    {
+        return $this->collection($model->designations, new DesignationTransformer(), 'designations');
     }
 }

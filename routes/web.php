@@ -7,13 +7,13 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {
-    $router->get('manufacturer', [
+    $router->get('manufacturers', [
         'as' => 'manufacturers', 'uses' => 'ManufacturerController@all'
     ]);
 
-    $router->get('manufacturer/{id}/model', [
-        'manufacturer_models', 'uses' => 'ManufacturerController@models'
+    $router->get('manufacturers/{id}', [
+        'manufacturer_models', 'uses' => 'ManufacturerController@show'
     ]);
 
-    $router->get('model/{id}', ['model', 'uses' => 'ModelController@show']);
+    $router->get('models/{id}', ['model', 'uses' => 'ModelController@show']);
 });

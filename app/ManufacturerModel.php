@@ -26,4 +26,9 @@ class ManufacturerModel extends Model
     protected $fillable = ['name', 'code', 'thumbnail', 'href', 'manufactured_years', 'manufacturer_id', 'model_designation_id'];
 
     public $timestamps = false;
+
+    public function designations()
+    {
+        return $this->hasMany(ModelDesignation::class,'model_id');
+    }
 }
