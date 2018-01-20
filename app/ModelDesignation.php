@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property mixed id
+ * @property Modification[] modifications
  */
 class ModelDesignation extends Model
 {

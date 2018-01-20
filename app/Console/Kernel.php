@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Console\Commands\CrawlerCommand;
 use App\Console\Commands\ModelCrawlerCommand;
+use App\Console\Commands\UpdateDesignations;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 
@@ -16,7 +17,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         CrawlerCommand::class,
-        ModelCrawlerCommand::class
+        ModelCrawlerCommand::class,
+        UpdateDesignations::class
     ];
 
     /**

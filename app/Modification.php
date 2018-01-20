@@ -13,6 +13,9 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int id
+ * @property ModificationType modificationType
+ * @property int modification_type_id
+ * @property string name
  */
 class Modification extends Model
 {
