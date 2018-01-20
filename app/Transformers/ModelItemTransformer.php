@@ -31,6 +31,7 @@ class ModelItemTransformer extends TransformerAbstract
      */
     public function includeDesignations(ManufacturerModel $model)
     {
+
         return $this->collection($model->designations, new DesignationTransformer(), 'designations');
     }
 }

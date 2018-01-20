@@ -14,10 +14,17 @@ use League\Fractal\TransformerAbstract;
 
 class DesignationTransformer extends TransformerAbstract
 {
+    protected $defaultIncludes = ['modifications'];
+
     public function transform(ModelDesignation $designation)
     {
         return [
             'id' => $designation->id
         ];
+    }
+
+    public function includeModifications(ModelDesignation $designation)
+    {
+        return $this->collection($designation->modifications, new ModificationTransformer(),'modifications');
     }
 }

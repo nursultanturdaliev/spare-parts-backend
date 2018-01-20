@@ -15,5 +15,9 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         'manufacturer_models', 'uses' => 'ManufacturerController@show'
     ]);
 
+    $router->get('manufacturers/{id}/models', [
+        'manufacturer_models', 'uses' => 'ManufacturerController@models'
+    ]);
+
     $router->get('models/{id}', ['model', 'uses' => 'ModelController@show']);
 });

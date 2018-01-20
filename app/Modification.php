@@ -13,15 +13,6 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int id
- * @property string name
- * @property string code
- * @property string engine_type
- * @property string engine_model
- * @property string engine_volume
- * @property string capacity
- * @property string transmission
- * @property string dates_of_issue
- * @property string content
  */
 class Modification extends Model
 {
@@ -34,4 +25,9 @@ class Modification extends Model
         'modification_type_id',
         'model_designation_id'
     ];
+
+    public function modificationType()
+    {
+        return $this->belongsTo(ModificationType::class);
+    }
 }

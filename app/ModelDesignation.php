@@ -21,4 +21,9 @@ class ModelDesignation extends Model
     protected $fillable = ['model_id', 'href'];
 
     public $timestamps = false;
+
+    public function modifications()
+    {
+        return $this->hasMany(Modification::class);
+    }
 }
