@@ -19,8 +19,8 @@ class ModelItemTransformer extends TransformerAbstract
     public function transform(ManufacturerModel $model)
     {
         return [
-            'id' => $model->id,
-            'name' => $model->name,
+            'id'                 => $model->id,
+            'name'               => $model->name,
             'manufactured_years' => $model->manufactured_years
         ];
     }

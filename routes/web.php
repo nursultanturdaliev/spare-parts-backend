@@ -12,12 +12,17 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     ]);
 
     $router->get('manufacturers/{id}', [
-        'manufacturer_models', 'uses' => 'ManufacturerController@show'
+        'as' => 'manufacturer_models', 'uses' => 'ManufacturerController@show'
     ]);
 
     $router->get('manufacturers/{id}/models', [
-        'manufacturer_models', 'uses' => 'ManufacturerController@models'
+        'as' => 'manufacturer_models', 'uses' => 'ManufacturerController@models'
     ]);
 
-    $router->get('models/{id}', ['model', 'uses' => 'ModelController@show']);
+    $router->get('models/{id}', [
+            'as' => 'model', 'uses' => 'ModelController@show']
+    );
+    $router->get('models/{id}/designations', [
+        'as' => 'model_designations', 'uses' => 'ModelController@designations'
+    ]);
 });

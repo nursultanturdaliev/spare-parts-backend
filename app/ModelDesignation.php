@@ -12,8 +12,19 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property mixed id
- * @property Modification[] modifications
+ * @property string id
+ * @property string modification
+ * @property string transmission
+ * @property string wheel_drive
+ * @property string engine_power
+ * @property string engine_volume
+ * @property string engine_model
+ * @property string engine_type
+ * @property string code
+ * @property string number_of_doors
+ * @property string release_date
+ * @property string lifting_capacity
+ * @property string chassis_configuration
  */
 class ModelDesignation extends Model
 {
@@ -22,9 +33,4 @@ class ModelDesignation extends Model
     protected $fillable = ['model_id', 'href'];
 
     public $timestamps = false;
-
-    public function modifications()
-    {
-        return $this->hasMany(Modification::class);
-    }
 }
