@@ -15,9 +15,11 @@ use Illuminate\Support\Collection;
  */
 class Manufacturer extends Model
 {
-    protected $table = 'manufacturers';
+    protected $table = 'tetik_manufacturers';
 
-    protected $fillable = ['name', 'href'];
+    protected $fillable = ['name', 'href', 'content', 'thumbnail'];
+
+    public $timestamps = false;
 
     public function models()
     {

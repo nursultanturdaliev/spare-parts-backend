@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\AcatOnlineCrawler;
+use App\Console\Commands\CatalogTypeCrawler;
 use App\Console\Commands\CrawlerCommand;
 use App\Console\Commands\ModelCrawlerCommand;
 use App\Console\Commands\UpdateDesignations;
@@ -18,7 +20,9 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         CrawlerCommand::class,
         ModelCrawlerCommand::class,
-        UpdateDesignations::class
+        UpdateDesignations::class,
+        AcatOnlineCrawler::class,
+        CatalogTypeCrawler::class
     ];
 
     /**
