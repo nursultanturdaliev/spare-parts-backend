@@ -20,9 +20,4 @@ class Manufacturer extends Model
     protected $fillable = ['name', 'href', 'content', 'thumbnail'];
 
     public $timestamps = false;
-
-    public function models()
-    {
-        return $this->hasMany(ManufacturerModel::class);
-    }
 }

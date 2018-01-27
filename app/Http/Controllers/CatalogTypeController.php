@@ -9,7 +9,19 @@
 namespace App\Http\Controllers;
 
 
+use App\CatalogType;
+use App\Transformers\CatalogTypeTransformer;
+use Illuminate\Http\JsonResponse;
+use League\Fractal\Resource\Collection;
+
 class CatalogTypeController extends Controller
 {
+    public function index()
+    {
+        $catalogTypes = CatalogType::all();
 
+        $resource = new Collection($catalogTypes, new CatalogTypeTransformer(), 'catalog_types');
+
+        return new JsonResponse($this->getManager()->createData($resource)->toArray());
+    }
 }

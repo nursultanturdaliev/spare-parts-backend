@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string name
  * @property string code
  * @property string content
+ * @property mixed manufacturers
  */
 class CatalogType extends Model
 {
@@ -24,4 +25,9 @@ class CatalogType extends Model
     protected $fillable = ['name', 'slug', 'content'];
 
     public $timestamps = false;
+
+    public function manufacturers()
+    {
+        return $this->hasMany(Manufacturer::class);
+    }
 }

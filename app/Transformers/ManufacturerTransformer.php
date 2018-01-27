@@ -22,9 +22,4 @@ class ManufacturerTransformer extends TransformerAbstract
             'name' => $manufacturer->name
         ];
     }
-
-    public function includeModels(Manufacturer $manufacturer)
-    {
-        return $this->collection($manufacturer->models, new ManufacturerModelTransformer(), 'models');
-    }
 }
