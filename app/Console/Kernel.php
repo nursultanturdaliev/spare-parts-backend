@@ -4,7 +4,9 @@ namespace App\Console;
 
 use App\Console\Commands\AcatOnlineCrawler;
 use App\Console\Commands\CatalogTypeCrawler;
+use App\Console\Commands\CountriesCrawler;
 use App\Console\Commands\CrawlerCommand;
+use App\Console\Commands\ModelCrawler;
 use App\Console\Commands\ModelCrawlerCommand;
 use App\Console\Commands\UpdateDesignations;
 use Illuminate\Console\Scheduling\Schedule;
@@ -22,7 +24,9 @@ class Kernel extends ConsoleKernel
         ModelCrawlerCommand::class,
         UpdateDesignations::class,
         AcatOnlineCrawler::class,
-        CatalogTypeCrawler::class
+        CatalogTypeCrawler::class,
+        ModelCrawler::class,
+        CountriesCrawler::class
     ];
 
     /**

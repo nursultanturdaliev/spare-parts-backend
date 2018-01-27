@@ -16,14 +16,14 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DomCrawler\Crawler;
 
-class CatalogTypeCrawler extends BaseAcatCommand
+class ModelCrawler extends BaseAcatCommand
 {
-    protected $name = 'acat:crawler:catalog';
+    protected $name = 'acat:crawler:model';
 
     public function run(InputInterface $input, OutputInterface $output)
     {
         /** @var CatalogType $catalogType */
-        $catalogType = CatalogType::find(9);
+        $catalogType = CatalogType::find(2);
 
         $crawler = new Crawler($catalogType->content);
         $marks = $crawler
@@ -44,12 +44,7 @@ class CatalogTypeCrawler extends BaseAcatCommand
                 $output->writeln($name);
 
                 /** @var Manufacturer $manufacturer */
-                $manufacturer = Manufacturer::firstOrCreate([
-                    'href' => $href,
-                    'name' => $name,
-                    'thumbnail' => $thumbnail,
-                    'content' => $content]
-                );
+                $manufacturer = Manufacturer::updateOrCreate(['href' => $href], ['thumbnail' => $thumbnail]);
 
             });
     }

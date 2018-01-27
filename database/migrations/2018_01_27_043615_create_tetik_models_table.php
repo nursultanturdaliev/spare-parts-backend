@@ -20,7 +20,8 @@ class CreateTetikModelsTable extends Migration
             $table->string('href');
             $table->binary('thumbnail');
             $table->longText('content');
-            $table->string('manufactured_years');
+            $table->string('period');
+            $table->string('production');
             $table->unsignedInteger('manufacturer_id');
             $table->foreign('manufacturer_id')->references('id')->on('manufacturers')
                 ->onDelete('cascade');
