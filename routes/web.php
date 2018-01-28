@@ -26,7 +26,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         'as' => 'model_designations', 'uses' => 'ModelController@designations'
     ]);
 
-    $router->get('catalog_types', [
-       'as' => 'catalog_types', 'uses'=> 'CatalogTypeController@index'
+    $router->get('catalogTypes', [
+       'as' => 'catalogTypes', 'uses'=> 'CatalogTypeController@index'
     ]);
 });

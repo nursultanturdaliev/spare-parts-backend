@@ -20,7 +20,7 @@ class CatalogTypeController extends Controller
     {
         $catalogTypes = CatalogType::all();
 
-        $resource = new Collection($catalogTypes, new CatalogTypeTransformer(), 'catalog_types');
+        $resource = new Collection($catalogTypes, new CatalogTypeTransformer(), 'catalogTypes');
 
         return new JsonResponse($this->getManager()->createData($resource)->toArray());
     }
