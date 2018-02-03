@@ -13,7 +13,6 @@ use App\Manufacturer;
 use App\ManufacturerModel;
 use App\Transformers\ManufacturerModelTransformer;
 use App\Transformers\ManufacturerTransformer;
-use http\Env\Response;
 use Illuminate\Http\JsonResponse;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
@@ -43,6 +42,19 @@ class ManufacturerController extends Controller
         $manager->parseIncludes('models');
 
         return new JsonResponse($manager->createData($resource)->toArray());
+    }
+
+    public function thumbnail($id)
+    {
+        $manufacturer = Manufacturer::find($id);
+
+        $response = new \Illuminate\Http\Response($manufacturer->thumbnail, 200, array(
+            'Content-Type'        => 'image/png',
+            'Content-Length'      => strlen($manufacturer->thumbnail),
+            'Content-Disposition' => 'inline',
+        ));
+
+        return $response;
     }
 
     public function models($id)
