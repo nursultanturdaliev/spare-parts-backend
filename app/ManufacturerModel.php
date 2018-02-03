@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
 class ManufacturerModel extends Model
 {
 
-    protected $table = 'models';
+    protected $table = 'tetik_models';
 
     protected $fillable = ['name', 'code', 'thumbnail', 'href', 'manufactured_years', 'manufacturer_id', 'model_designation_id'];
 

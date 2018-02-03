@@ -18,8 +18,14 @@ class ManufacturerTransformer extends TransformerAbstract
     public function transform(Manufacturer $manufacturer)
     {
         return [
-            'id'   => $manufacturer->id,
+            'id' => $manufacturer->id,
             'name' => $manufacturer->name
         ];
+    }
+
+    public function includeModels(Manufacturer $manufacturer)
+    {
+        //die(var_dump($manufacturer->models));
+        return $this->collection($manufacturer->models, new ModelItemTransformer(), "models");
     }
 }
