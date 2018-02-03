@@ -39,7 +39,7 @@ class ManufacturerController extends Controller
 
         $resource = new Item($manufacturer, new ManufacturerTransformer(), 'manufacturers');
         $manager = $this->getManager();
-        $manager->parseIncludes('models');
+        $manager->parseIncludes('modelGroups');
 
         return new JsonResponse($manager->createData($resource)->toArray());
     }

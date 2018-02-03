@@ -13,7 +13,7 @@ use League\Fractal\TransformerAbstract;
 
 class ManufacturerTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = ['models'];
+    protected $availableIncludes = ['modelGroups'];
 
     public function transform(Manufacturer $manufacturer)
     {
@@ -23,9 +23,8 @@ class ManufacturerTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeModels(Manufacturer $manufacturer)
+    public function includeModelGroups(Manufacturer $manufacturer)
     {
-        //die(var_dump($manufacturer->models));
-        return $this->collection($manufacturer->models, new ModelItemTransformer(), "models");
+        return $this->collection($manufacturer->modelGroups, new ModelGroupTransformer(), "modelGroups");
     }
 }

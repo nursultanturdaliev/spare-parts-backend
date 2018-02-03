@@ -10,7 +10,9 @@ namespace App\Console\Commands;
 
 
 use App\CatalogType;
+use App\Country;
 use App\Manufacturer;
+use App\ModelGroup;
 use GuzzleHttp\Client;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -22,31 +24,68 @@ class ModelCrawler extends BaseAcatCommand
 
     public function run(InputInterface $input, OutputInterface $output)
     {
-        /** @var CatalogType $catalogType */
-        $catalogType = CatalogType::find(2);
 
-        $crawler = new Crawler($catalogType->content);
-        $marks = $crawler
-            ->filter('div.marks-inline')
-            ->first()
-            ->filter('a')
-            ->each(function (Crawler $crawler) use ($output) {
+        $manufacturers = Manufacturer::all();
+        /** @var Manufacturer $manufacturer */
+        foreach ($manufacturers as $manufacturer) {
+            $outerCrawler = new Crawler($manufacturer->content);
 
-                $guzzle = new Client();
+            $countries = Country::all();
 
-                $href = $crawler->attr('href');
-                $name = $crawler->filter('div.main_catalog--mark_name')->text();
-
-                $src = $crawler->filter('div.main_catalog--mark_image>img')->first()->attr('src');
-                $thumbnail = $guzzle->get($src)->getBody()->getContents();
-                $content = $guzzle->get($this->domain . $href)->getBody()->getContents();
-
-                $output->writeln($name);
-
-                /** @var Manufacturer $manufacturer */
-                $manufacturer = Manufacturer::updateOrCreate(['href' => $href], ['thumbnail' => $thumbnail]);
-
+            $countryMap = [];
+            $outerCrawler->filter('.country')->each(function (Crawler $crawler, $index) use (&$countryMap) {
+                $country = $crawler->attr('data-country');
+                $countryMap[$country] = $index;
             });
+
+            if (sizeof($countryMap) < 1) {
+                continue;
+            }
+
+            $output->writeln($manufacturer->name);
+
+            /** @var Country $country */
+            foreach ($countries as $country) {
+                $node = $outerCrawler->filter('table[data-countryid="' . $country->code . '"]')->first();
+                if (!$node->count()) {
+                    $output->writeln('NOT FOUND - COUNTRY - ' . $country->name);
+                    continue;
+                }
+
+                $output->writeln('CRAWLING COUNTRY - ' . $country->name);
+
+                $node->filter('tbody>tr')->each(function (Crawler $crawler, $index) use ($output, $manufacturer, $country, $countryMap, $outerCrawler) {
+
+                    if ($index > 0) {
+                        $modelGroupArray = [];
+                        $keys = ['name', 'code', 'period', 'production'];
+                        $crawler->filter('td')->each(function (Crawler $crawler, $index) use (&$modelGroupArray, $keys, $output) {
+                            $modelGroupArray[$keys[$index]] = $crawler->text();
+                        });
+
+                        if (sizeof($modelGroupArray) == 4 && trim($modelGroupArray['name']) !== 'Рубрика') {
+                            $modelGroupArray['manufacturer_id'] = $manufacturer->id;
+                            $modelGroupArray['country_id'] = $country->id;
+
+
+                            $countryIndex = $countryMap[$country->code];
+
+                            $modal = $outerCrawler->filter('div[data-modal_year="' . $countryIndex . '-' . $modelGroupArray['name'] . '"]');
+
+                            if (!$modal->count()) {
+                                $output->writeln($countryIndex . ' : ' . $modelGroupArray['name']);
+
+                            } else {
+                                $modelGroupArray['years_content'] = $modal->first()->html();
+                            }
+
+                            ModelGroup::create($modelGroupArray);
+                        }
+                    }
+
+                });
+            }
+        }
     }
 
 }

@@ -11,7 +11,7 @@ use Illuminate\Support\Collection;
  * @property string content
  * @property mixed id
  * @property int name
- * @property Collection models
+ * @property Collection modelGroups
  */
 class Manufacturer extends Model
 {
@@ -21,8 +21,8 @@ class Manufacturer extends Model
 
     public $timestamps = false;
 
-    public function models()
+    public function modelGroups()
     {
-        return $this->hasMany(ManufacturerModel::class);
+        return $this->hasMany(ModelGroup::class);
     }
 }

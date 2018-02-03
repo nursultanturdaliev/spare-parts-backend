@@ -19,7 +19,6 @@ class CreateTetikManufacturersTable extends Migration
             $table->string('href');
             $table->longText('content');
             $table->longText('thumbnail');
-            //$table->timestamps();
         });
     }
 
