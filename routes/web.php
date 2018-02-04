@@ -33,4 +33,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('catalogTypes', [
        'as' => 'catalogTypes', 'uses'=> 'CatalogTypeController@index'
     ]);
+
+    $router->get('catalogTypes/{slug}', [
+        'as' => 'catalogTypes', 'uses'=> 'CatalogTypeController@show'
+    ]);
 });

@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string code
  * @property string content
  * @property mixed manufacturers
+ * @property mixed slug
  */
 class CatalogType extends Model
 {

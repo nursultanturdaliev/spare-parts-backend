@@ -13,6 +13,7 @@ use App\CatalogType;
 use App\Transformers\CatalogTypeTransformer;
 use Illuminate\Http\JsonResponse;
 use League\Fractal\Resource\Collection;
+use League\Fractal\Resource\Item;
 
 class CatalogTypeController extends Controller
 {
@@ -21,6 +22,15 @@ class CatalogTypeController extends Controller
         $catalogTypes = CatalogType::all();
 
         $resource = new Collection($catalogTypes, new CatalogTypeTransformer(), 'catalogTypes');
+
+        return new JsonResponse($this->getManager()->createData($resource)->toArray());
+    }
+
+    public function show($slug)
+    {
+        $catalogType = CatalogType::where('slug',$slug)->firstOrFail();
+
+        $resource = new Item($catalogType, new CatalogTypeTransformer(),'catalogTypes');
 
         return new JsonResponse($this->getManager()->createData($resource)->toArray());
     }
