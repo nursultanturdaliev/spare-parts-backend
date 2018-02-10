@@ -11,6 +11,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int id
+ * @property string name
+ */
 class SparePartCategory extends Model
 {
     protected $table = 'tetik_spare_part_categories';

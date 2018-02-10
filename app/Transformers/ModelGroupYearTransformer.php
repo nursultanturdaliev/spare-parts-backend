@@ -14,11 +14,18 @@ use League\Fractal\TransformerAbstract;
 
 class ModelGroupYearTransformer extends TransformerAbstract
 {
+    protected $availableIncludes = ['sparePartCategoryTypes'];
+
     public function transform(ModelGroupYear $modelGroupYear)
     {
         return [
             'id'   => $modelGroupYear->id,
             'name' => $modelGroupYear->name
         ];
+    }
+
+    public function includeSparePartCategoryTypes(ModelGroupYear $modelGroupYear)
+    {
+        return $this->collection($modelGroupYear->sparePartCategories, new SparePartCategoryTransformer(),'sparePartCategories');
     }
 }

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed id
  * @property string content
  * @property int model_group_id
+ * @property array sparePartCategories
  */
 class ModelGroupYear extends Model
 {
@@ -19,4 +20,9 @@ class ModelGroupYear extends Model
     public $timestamps = false;
 
     protected $fillable = ['name', 'content', 'href', 'model_group_id'];
+
+    public function sparePartCategories()
+    {
+        return $this->hasMany(SparePartCategory::class);
+    }
 }
