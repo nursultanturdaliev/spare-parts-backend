@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property string name
- * @property string href;
+ * @property string href
  * @property mixed id
+ * @property string content
+ * @property int model_group_id
  */
 class ModelGroupYear extends Model
 {
