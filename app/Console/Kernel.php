@@ -8,6 +8,7 @@ use App\Console\Commands\CountriesCrawler;
 use App\Console\Commands\CrawlerCommand;
 use App\Console\Commands\ModelCrawler;
 use App\Console\Commands\ModelCrawlerCommand;
+use App\Console\Commands\ModelGroupYearCrawler;
 use App\Console\Commands\UpdateDesignations;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
@@ -26,13 +27,14 @@ class Kernel extends ConsoleKernel
         AcatOnlineCrawler::class,
         CatalogTypeCrawler::class,
         ModelCrawler::class,
-        CountriesCrawler::class
+        CountriesCrawler::class,
+        ModelGroupYearCrawler::class
     ];
 
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
      * @return void
      */
     protected function schedule(Schedule $schedule)
