@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string production
  * @property string years_content
  * @property int id
+ * @property array modelGroupYears
  */
 class ModelGroup extends Model
 {
@@ -26,4 +27,9 @@ class ModelGroup extends Model
     public $timestamps = false;
 
     protected $fillable = ['name', 'code', 'period', 'production', 'years_content', 'manufacturer_id', 'country_id', 'href'];
+
+    public function modelGroupYears()
+    {
+        return $this->hasMany(ModelGroupYear::class, 'model_group_id');
+    }
 }
