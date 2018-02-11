@@ -23,7 +23,7 @@ class ModelGroupYearController extends Controller
 
         $resource = new Item($modelGroupYear, new ModelGroupYearTransformer(), 'modelGroupYears');
         $manager = $this->getManager();
-        $manager->parseIncludes('sparePartCategoryTypes');
+        $manager->parseIncludes('sparePartCategories');
 
         return new JsonResponse($manager->createData($resource)->toArray());
     }
