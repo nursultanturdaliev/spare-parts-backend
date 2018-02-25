@@ -10,6 +10,7 @@ use App\Console\Commands\ModelCrawler;
 use App\Console\Commands\ModelCrawlerCommand;
 use App\Console\Commands\ModelGroupYearCrawler;
 use App\Console\Commands\SparePartCategoryCrawler;
+use App\Console\Commands\SparePartGroupCrawler;
 use App\Console\Commands\UpdateDesignations;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
@@ -30,7 +31,8 @@ class Kernel extends ConsoleKernel
         ModelCrawler::class,
         CountriesCrawler::class,
         ModelGroupYearCrawler::class,
-        SparePartCategoryCrawler::class
+        SparePartCategoryCrawler::class,
+        SparePartGroupCrawler::class
     ];
 
     /**
