@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SparePart extends Model
 {
-    protected $table = 'tetik_spare_part';
+    protected $table = 'tetik_spare_parts';
 
-    protected $fillable = ['number','name','description'];
+    protected $fillable = ['number', 'name', 'description'];
 }
