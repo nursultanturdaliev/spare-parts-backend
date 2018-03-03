@@ -9,19 +9,38 @@
 namespace App\Http\Controllers;
 
 use App\SparePartCategory;
+use App\Transformers\SparePartCategoryTransformer;
+use Illuminate\Http\JsonResponse;
+use League\Fractal\Resource\Item;
 
 class SparePartCategoryController extends Controller
 {
     public function thumbnail($id)
     {
-        $modelGroupYear = SparePartCategory::find($id);
+        $sparePartCategory = SparePartCategory::find($id);
 
-        $response = new \Illuminate\Http\Response($modelGroupYear->thumbnail, 200, array(
-            'Content-Type'        => 'image/png',
-            'Content-Length'      => strlen($modelGroupYear->thumbnail),
+        $response = new \Illuminate\Http\Response($sparePartCategory->thumbnail, 200, array(
+            'Content-Type' => 'image/png',
+            'Content-Length' => strlen($sparePartCategory->thumbnail),
             'Content-Disposition' => 'inline',
         ));
 
         return $response;
+    }
+
+    public function show($id)
+    {
+        $sparePartCategory = SparePartCategory::find($id);
+
+        if (!$sparePartCategory instanceof SparePartCategory) {
+            return new JsonResponse([], 404);
+        }
+
+        $resource = new Item($sparePartCategory, new SparePartCategoryTransformer(), 'sparePartCategories');
+
+        $manager = $this->getManager();
+        $manager->parseIncludes('sparePartGroups');
+
+        return new JsonResponse($manager->createData($resource)->toArray());
     }
 }

@@ -56,12 +56,4 @@ class ManufacturerController extends Controller
 
         return $response;
     }
-
-    public function models($id)
-    {
-        $models = ManufacturerModel::where(['manufacturer_id' => $id])->get();
-        $resource = new Collection($models, new ManufacturerModelTransformer(), 'models');
-
-        return new JsonResponse($this->getManager()->createData($resource)->toArray());
-    }
 }

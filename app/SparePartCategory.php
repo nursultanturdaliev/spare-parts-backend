@@ -25,4 +25,9 @@ class SparePartCategory extends Model
     protected $fillable = ['name', 'thumbnail', 'href', 'content', 'model_group_year_id'];
 
     public $timestamps = false;
+
+    public function sparePartGroups()
+    {
+        return $this->hasMany(SparePartGroup::class);
+    }
 }

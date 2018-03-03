@@ -12,20 +12,12 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     ]);
 
     $router->get('manufacturers/{id}', [
-        'as' => 'manufacturer_models', 'uses' => 'ManufacturerController@show'
-    ]);
-
-    $router->get('manufacturers/{id}/models', [
-        'as' => 'manufacturer_models', 'uses' => 'ManufacturerController@models'
+        'as' => 'manufacturer_show', 'uses' => 'ManufacturerController@show'
     ]);
 
     $router->get('manufacturers/{id}/thumbnail', [
         'as' => 'manufacturer_thumbnail', 'uses' => 'ManufacturerController@thumbnail'
     ]);
-
-    $router->get('models/{id}', [
-            'as' => 'model', 'uses' => 'ModelController@show']
-    );
 
     $router->get('catalogTypes', [
         'as' => 'catalogTypes', 'uses' => 'CatalogTypeController@index'
@@ -36,7 +28,11 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     ]);
 
     $router->get('sparePartCategory/{id}/thumbnail', [
-        'as' => 'model_group_year_thumbnail', 'uses' => 'SparePartCategoryController@thumbnail'
+        'as' => 'spare_part_category_thumbnail', 'uses' => 'SparePartCategoryController@thumbnail'
+    ]);
+
+    $router->get('sparePartCategory/{id}', [
+        'as' => 'spare_part_category_show', 'uses' => 'SparePartCategoryController@show'
     ]);
 
     $router->get('catalogTypes/{slug}', [
