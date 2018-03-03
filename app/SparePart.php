@@ -6,7 +6,7 @@
  * Time: 10:01 PM
  */
 
-namespace App\Console\Commands;
+namespace App;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -15,5 +15,6 @@ class SparePart extends Model
 {
     protected $table = 'tetik_spare_parts';
 
-    protected $fillable = ['number', 'name', 'description'];
+    protected $fillable = ['number', 'name', 'description', 'spare_part_group_id'];
+    public $timestamps = false;
 }

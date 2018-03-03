@@ -19,7 +19,7 @@ class SparePartGroupCrawler extends BaseAcatCommand
         SparePartCategory::chunk(10, function ($sparePartCategories) use ($output) {
             /** @var SparePartCategory $sparePartCategory */
             foreach ($sparePartCategories as $sparePartCategory) {
-                if($sparePartCategory->id< 218){
+                if ($sparePartCategory->id < 218) {
                     continue;
                 }
                 $crawler = new Crawler($sparePartCategory->content);

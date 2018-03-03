@@ -10,6 +10,7 @@ use App\Console\Commands\ModelCrawler;
 use App\Console\Commands\ModelCrawlerCommand;
 use App\Console\Commands\ModelGroupYearCrawler;
 use App\Console\Commands\SparePartCategoryCrawler;
+use App\Console\Commands\SparePartCrawler;
 use App\Console\Commands\SparePartGroupCrawler;
 use App\Console\Commands\UpdateDesignations;
 use Illuminate\Console\Scheduling\Schedule;
@@ -32,7 +33,8 @@ class Kernel extends ConsoleKernel
         CountriesCrawler::class,
         ModelGroupYearCrawler::class,
         SparePartCategoryCrawler::class,
-        SparePartGroupCrawler::class
+        SparePartGroupCrawler::class,
+        SparePartCrawler::class
     ];
 
     /**
