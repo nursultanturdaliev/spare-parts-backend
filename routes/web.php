@@ -31,11 +31,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         'as' => 'spare_part_category_thumbnail', 'uses' => 'SparePartCategoryController@thumbnail'
     ]);
 
-    $router->get('sparePartCategory/{id}', [
+    $router->get('sparePartCategories/{id}', [
         'as' => 'spare_part_category_show', 'uses' => 'SparePartCategoryController@show'
     ]);
 
+    $router->get('sparePartGroups/{id}', [
+        'as' => 'spare_part_group_show', 'uses' => 'SparePartGroupController@show'
+    ]);
+
     $router->get('catalogTypes/{slug}', [
-        'as' => 'catalogTypes', 'uses'=> 'CatalogTypeController@show'
+        'as' => 'catalogTypes', 'uses' => 'CatalogTypeController@show'
     ]);
 });

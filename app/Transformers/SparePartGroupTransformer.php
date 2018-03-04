@@ -14,6 +14,7 @@ use League\Fractal\TransformerAbstract;
 
 class SparePartGroupTransformer extends TransformerAbstract
 {
+    protected $availableIncludes = ['spareParts'];
 
     public function transform(SparePartGroup $sparePartGroup)
     {
@@ -21,5 +22,10 @@ class SparePartGroupTransformer extends TransformerAbstract
             'id' => $sparePartGroup->id,
             'name' => $sparePartGroup->name
         ];
+    }
+
+    public function includeSpareParts(SparePartGroup $sparePartGroup)
+    {
+        return $this->collection($sparePartGroup->spareParts, new SparePartTransformer(), 'spareParts');
     }
 }

@@ -6,7 +6,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property integer id
+ * @property  integer id
  * @property  string name
  * @property  string description
  * @property  string content
@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property  string image
  * @property  string image_html
  * @property  string image_src
+ * @property  array spareParts
  */
 class SparePartGroup extends Model
 {
@@ -23,4 +24,9 @@ class SparePartGroup extends Model
 
     protected $fillable = ['name', 'description', 'content', 'href', 'thumbnail', 'thumbnail_src', 'image', 'image_html', 'image_src', 'spare_part_category_id'];
     public $timestamps = false;
+
+    public function spareParts()
+    {
+        return $this->hasMany(SparePart::class);
+    }
 }

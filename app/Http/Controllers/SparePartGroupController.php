@@ -10,8 +10,11 @@ namespace App\Http\Controllers;
 
 
 use App\SparePartGroup;
+use App\Transformers\SparePartGroupTransformer;
+use Illuminate\Http\JsonResponse;
+use League\Fractal\Resource\Item;
 
-class SparePartGroupController
+class SparePartGroupController extends Controller
 {
     public function thumbnail($id)
     {
@@ -24,5 +27,19 @@ class SparePartGroupController
         ));
 
         return $response;
+    }
+
+    public function show($id)
+    {
+        $sparePartGroup = SparePartGroup::find($id);
+
+        if (!$sparePartGroup instanceof SparePartGroup) {
+            return new JsonResponse([], 404);
+        }
+
+        $resource = new Item($sparePartGroup, new SparePartGroupTransformer(), 'sparePartGroups');
+        $manager = $this->getManager();
+        $manager->parseIncludes('spareParts');
+        return new JsonResponse($manager->createData($resource)->toArray());
     }
 }
