@@ -39,6 +39,10 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         'as' => 'spare_part_group_show', 'uses' => 'SparePartGroupController@show'
     ]);
 
+    $router->get('sparePartGroups/{id}/thumbnail', [
+        'as' => 'spare_part_group_thumbnail', 'uses' => 'SparePartGroupController@thumbnail'
+    ]);
+
     $router->get('catalogTypes/{slug}', [
         'as' => 'catalogTypes', 'uses' => 'CatalogTypeController@show'
     ]);

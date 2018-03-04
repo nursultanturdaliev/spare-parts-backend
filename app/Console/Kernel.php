@@ -12,6 +12,7 @@ use App\Console\Commands\ModelGroupYearCrawler;
 use App\Console\Commands\SparePartCategoryCrawler;
 use App\Console\Commands\SparePartCrawler;
 use App\Console\Commands\SparePartGroupCrawler;
+use App\Console\Commands\SparePartGroupThumbnailCrawler;
 use App\Console\Commands\UpdateDesignations;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
@@ -34,7 +35,8 @@ class Kernel extends ConsoleKernel
         ModelGroupYearCrawler::class,
         SparePartCategoryCrawler::class,
         SparePartGroupCrawler::class,
-        SparePartCrawler::class
+        SparePartCrawler::class,
+        SparePartGroupThumbnailCrawler::class
     ];
 
     /**
