@@ -17,9 +17,9 @@ class SparePartTransformer extends TransformerAbstract
     public function transform(SparePart $sparePart)
     {
         return [
-            'id' => $sparePart->id,
-            'number' => $sparePart->number,
-            'name' => $sparePart->name,
+            'id'          => $sparePart->id,
+            'number'      => $sparePart->number,
+            'name'        => $sparePart->name,
             'description' => $sparePart->description
         ];
     }

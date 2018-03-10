@@ -20,7 +20,8 @@ class SparePartGroupTransformer extends TransformerAbstract
     {
         return [
             'id' => $sparePartGroup->id,
-            'name' => $sparePartGroup->name
+            'name' => $sparePartGroup->name,
+            'image_html'=>$sparePartGroup->image_html
         ];
     }
 

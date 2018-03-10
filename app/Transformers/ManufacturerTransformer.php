@@ -18,7 +18,7 @@ class ManufacturerTransformer extends TransformerAbstract
     public function transform(Manufacturer $manufacturer)
     {
         return [
-            'id' => $manufacturer->id,
+            'id'   => $manufacturer->id,
             'name' => $manufacturer->name
         ];
     }

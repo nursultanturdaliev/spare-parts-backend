@@ -26,6 +26,6 @@ class ModelGroupYearTransformer extends TransformerAbstract
 
     public function includeSparePartCategories(ModelGroupYear $modelGroupYear)
     {
-        return $this->collection($modelGroupYear->sparePartCategories, new SparePartCategoryTransformer(),'sparePartCategories');
+        return $this->collection($modelGroupYear->sparePartCategories, new SparePartCategoryTransformer(), 'sparePartCategories');
     }
 }

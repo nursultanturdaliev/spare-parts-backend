@@ -22,7 +22,7 @@ class CatalogTypeTransformer extends TransformerAbstract
         return [
             'id'   => $catalogType->id,
             'name' => $catalogType->name,
-            'slug' =>$catalogType->slug
+            'slug' => $catalogType->slug
         ];
     }
 

@@ -19,7 +19,7 @@ class SparePartCategoryTransformer extends TransformerAbstract
     public function transform(SparePartCategory $sparePartCategory)
     {
         return [
-            'id' => $sparePartCategory->id,
+            'id'   => $sparePartCategory->id,
             'name' => $sparePartCategory->name
         ];
     }
