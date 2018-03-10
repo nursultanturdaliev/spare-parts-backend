@@ -15,36 +15,33 @@ use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class SparePartGroupThumbnailCrawler extends BaseAcatCommand
+class SparePartGroupImageCrawler extends BaseAcatCommand
 {
-    protected $name="acat:crawler:spare-part-group:thumbnail";
+    protected $name="acat:crawler:spare-part-group:image";
 
     public function run(InputInterface $input, OutputInterface $output)
     {
-        SparePartGroup::where('thumbnail','=',null)->chunk(400, function ($sparePartGroups) use ($output) {
+        SparePartGroup::chunk(100, function ($sparePartGroups) use ($output) {
             /** @var SparePartGroup $sparePartGroup */
             foreach ($sparePartGroups as $sparePartGroup) {
 
 
                 $newSparePartGroup = SparePartGroup::find($sparePartGroup->id);
 
-                if ($newSparePartGroup->thumbnail) {
+                if ($newSparePartGroup->image) {
                     $output->writeln("continue");
                     continue;
                 }
-                try{
-                    $src = $sparePartGroup->thumbnail_src;
-                    if (strpos($src, 'undefined') !== false) {
-                        continue;
-                    }
+                try {
+                    $src = $sparePartGroup->image_src;
                     $client = new Client();
                     $imageResponse = $client->get($src);
-                    $thumbnail = $imageResponse->getBody()->getContents();
+                    $image = $imageResponse->getBody()->getContents();
 
-                    SparePartGroup::where("thumbnail_src", "=", $src)->update(["thumbnail" => $thumbnail]);
+                    SparePartGroup::where("image_src", "=", $src)->update(["image" => $image]);
 
-                    $output->writeln("Updated: " .$src );
-                }catch (RequestException $requestException){
+                    $output->writeln("Updated: " . $src);
+                } catch (RequestException $requestException) {
                     $output->writeln("Undefined");
                 }
             }
