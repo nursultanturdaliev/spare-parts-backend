@@ -47,3 +47,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         'as' => 'catalogTypes', 'uses' => 'CatalogTypeController@show'
     ]);
 });
+
+$router->post('/auth/login', 'AuthController@postLogin');
+$router->post('/user/register', 'UserController@register');
