@@ -47,8 +47,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         'as' => 'catalogTypes', 'uses' => 'CatalogTypeController@show'
     ]);
 
-    $router->get('sparePart/search', [
-        'as' => 'sparePartSearch', 'uses' => 'SparePartController@search'
+    $router->get('spareParts', [
+        'as' => 'sparePartSearch', 'uses' => 'SparePartController@all'
     ]);
 });
 
