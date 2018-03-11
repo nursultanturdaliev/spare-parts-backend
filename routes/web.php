@@ -52,5 +52,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     ]);
 });
 
+$router->group(['prefix' => 'api', 'middleware' => ['auth']], function () use ($router) {
+    $router->get('products', [
+        'as' => 'products', 'uses' => 'ProductController@all'
+    ]);
+
+    $router->post('products', [
+        'as' => 'products_create', 'uses' => 'ProductController@create'
+    ]);
+});
+
 $router->post('/auth/login', 'AuthController@postLogin');
 $router->post('/user/register', 'UserController@register');
