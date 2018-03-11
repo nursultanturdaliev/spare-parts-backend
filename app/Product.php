@@ -22,4 +22,9 @@ class Product extends Model
 {
     protected $table = 'tetik_products';
     protected $fillable = ['price', 'quantity', 'user_id', 'spare_part_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

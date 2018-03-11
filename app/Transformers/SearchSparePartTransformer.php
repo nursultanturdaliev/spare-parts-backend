@@ -9,11 +9,14 @@
 namespace App\Transformers;
 
 
+use App\Http\Transformers\ProductTransformer;
 use App\SparePart;
 use League\Fractal\TransformerAbstract;
 
 class SearchSparePartTransformer extends TransformerAbstract
 {
+    protected $defaultIncludes = ['products'];
+
     public function transform(SparePart $sparePart)
     {
         return [
@@ -22,5 +25,10 @@ class SearchSparePartTransformer extends TransformerAbstract
             'name'        => $sparePart->name,
             'description' => $sparePart->description
         ];
+    }
+
+    public function includeProducts(SparePart $sparePart)
+    {
+        return $this->collection($sparePart->products, new ProductTransformer(), 'products');
     }
 }

@@ -23,4 +23,9 @@ class SparePart extends Model
 
     protected $fillable = ['number', 'name', 'description', 'spare_part_group_id'];
     public $timestamps = false;
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
