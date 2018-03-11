@@ -11,6 +11,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * @property integer id
+ * @property string firstname
+ * @property string lastname
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
