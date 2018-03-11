@@ -46,6 +46,10 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('catalogTypes/{slug}', [
         'as' => 'catalogTypes', 'uses' => 'CatalogTypeController@show'
     ]);
+
+    $router->get('sparePart/search', [
+        'as' => 'sparePartSearch', 'uses' => 'SparePartController@search'
+    ]);
 });
 
 $router->post('/auth/login', 'AuthController@postLogin');
