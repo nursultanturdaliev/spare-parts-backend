@@ -25,7 +25,7 @@ class SparePartController extends Controller
             return new JsonResponse([], 404);
         }
 
-        $spareParts = SparePart::where('name', '=', $searchText)->orWhere('description', 'LIKE', '%' . $searchText . '%')->limit(100)->get();
+        $spareParts = SparePart::where('name', 'LIKE', '%' . $searchText . '%')->orWhere('description', 'LIKE', '%' . $searchText . '%')->limit(100)->get();
 
         $resource = new Collection($spareParts, new SearchSparePartTransformer(), 'spareParts');
         return new JsonResponse($this->getManager()->createData($resource)->toArray());
