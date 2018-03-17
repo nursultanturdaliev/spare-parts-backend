@@ -15,6 +15,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
+use PHPUnit\Util\Json;
 
 class ProductController extends Controller
 {
@@ -31,6 +32,19 @@ class ProductController extends Controller
         $content['user_id'] = $this->getUser()->id;
 
         $product = Product::create($content);
+
+        $resource = new Item($product, new ProductTransformer(), 'products');
+
+        return new JsonResponse($this->getManager()->createData($resource)->toArray());
+    }
+
+    public function show($id)
+    {
+        $product = Product::find($id);
+
+        if (!$product instanceof Product) {
+            return new JsonResponse([], 404);
+        }
 
         $resource = new Item($product, new ProductTransformer(), 'products');
 

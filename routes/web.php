@@ -60,6 +60,10 @@ $router->group(['prefix' => 'api', 'middleware' => ['auth']], function () use ($
     $router->post('products', [
         'as' => 'products_create', 'uses' => 'ProductController@create'
     ]);
+
+    $router->get('products/{id}', [
+        'as' => 'products_show', 'uses' => 'ProductController@show'
+    ]);
 });
 
 $router->post('/auth/login', 'AuthController@postLogin');

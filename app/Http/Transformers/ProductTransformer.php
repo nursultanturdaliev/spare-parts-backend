@@ -24,7 +24,8 @@ class ProductTransformer extends TransformerAbstract
             'id'            => $product->id,
             'price'         => $product->price,
             'quantity'      => $product->quantity,
-            'spare_part_id' => $product->spare_part_id
+            'spare_part_id' => $product->spare_part_id,
+            'created_at'    => $product->created_at->format(DATE_ATOM)
         ];
     }
 

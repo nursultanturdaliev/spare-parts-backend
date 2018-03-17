@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer user_id
  * @property integer spare_part_id
  * @property SparePart sparePart
+ * @property \DateTime created_at
  */
 class Product extends Model
 {
