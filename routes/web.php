@@ -23,6 +23,10 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         'as' => 'catalogTypes', 'uses' => 'CatalogTypeController@index'
     ]);
 
+    $router->get('modelGroups/{id}', [
+        'as' => 'model_group', 'uses' => 'ModelGroupController@show'
+    ]);
+
     $router->get('modelGroupYears/{id}', [
         'as' => 'model_group_year', 'uses' => 'ModelGroupYearController@show'
     ]);
