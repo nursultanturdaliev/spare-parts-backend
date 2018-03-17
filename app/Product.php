@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer quantity
  * @property integer user_id
  * @property integer spare_part_id
+ * @property SparePart sparePart
  */
 class Product extends Model
 {
@@ -26,5 +27,10 @@ class Product extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function sparePart()
+    {
+        return $this->belongsTo(SparePart::class);
     }
 }

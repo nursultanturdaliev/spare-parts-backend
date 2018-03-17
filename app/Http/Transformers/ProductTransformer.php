@@ -10,12 +10,13 @@ namespace App\Http\Transformers;
 
 
 use App\Product;
+use App\Transformers\SparePartTransformer;
 use League\Fractal\Resource\Item;
 use League\Fractal\TransformerAbstract;
 
 class ProductTransformer extends TransformerAbstract
 {
-    protected $defaultIncludes = ['user'];
+    protected $defaultIncludes = ['user', 'sparePart'];
 
     public function transform(Product $product)
     {
@@ -30,5 +31,10 @@ class ProductTransformer extends TransformerAbstract
     public function includeUser(Product $product)
     {
         return new Item($product->user, new UserTransformer(), 'user');
+    }
+
+    public function includeSparePart(Product $product)
+    {
+        return new Item($product->sparePart, new SparePartTransformer(), 'sparePart');
     }
 }
