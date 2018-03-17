@@ -14,7 +14,6 @@ use App\Console\Commands\SparePartCrawler;
 use App\Console\Commands\SparePartGroupCrawler;
 use App\Console\Commands\SparePartGroupImageCrawler;
 use App\Console\Commands\SparePartGroupThumbnailCrawler;
-use App\Console\Commands\UpdateDesignations;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 
