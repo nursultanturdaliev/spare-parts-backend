@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string content
  * @property int model_group_id
  * @property array sparePartCategories
+ * @property ModelGroup modelGroup
  */
 class ModelGroupYear extends Model
 {
@@ -24,5 +25,10 @@ class ModelGroupYear extends Model
     public function sparePartCategories()
     {
         return $this->hasMany(SparePartCategory::class);
+    }
+
+    public function modelGroup()
+    {
+        return $this->belongsTo(ModelGroup::class);
     }
 }

@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string years_content
  * @property int id
  * @property array modelGroupYears
+ * @property int manufacturer_id
  */
 class ModelGroup extends Model
 {

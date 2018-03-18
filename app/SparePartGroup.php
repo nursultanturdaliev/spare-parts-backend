@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property  string image_html
  * @property  string image_src
  * @property  array spareParts
+ * @property  SparePartCategory sparePartCategory
  */
 class SparePartGroup extends Model
 {
@@ -28,5 +29,10 @@ class SparePartGroup extends Model
     public function spareParts()
     {
         return $this->hasMany(SparePart::class);
+    }
+
+    public function sparePartCategory()
+    {
+        return $this->belongsTo(SparePartCategory::class);
     }
 }

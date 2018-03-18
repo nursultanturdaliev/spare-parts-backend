@@ -16,6 +16,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string number
  * @property string name
  * @property string description
+ * @property Product[] products
+ * @property SparePartGroup sparePartGroup
  */
 class SparePart extends Model
 {
@@ -27,5 +29,10 @@ class SparePart extends Model
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function sparePartGroup()
+    {
+        return $this->belongsTo(SparePartGroup::class);
     }
 }

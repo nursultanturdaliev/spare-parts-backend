@@ -21,11 +21,16 @@ class ProductTransformer extends TransformerAbstract
     public function transform(Product $product)
     {
         return [
-            'id'            => $product->id,
-            'price'         => $product->price,
-            'quantity'      => $product->quantity,
-            'spare_part_id' => $product->spare_part_id,
-            'created_at'    => $product->created_at->format(DATE_ATOM)
+            'id'                     => $product->id,
+            'price'                  => $product->price,
+            'quantity'               => $product->quantity,
+            'spare_part_id'          => $product->spare_part_id,
+            'created_at'             => $product->created_at->format(DATE_ATOM),
+            'spare_part_group_id'    => $product->sparePart->sparePartGroup->id,
+            'spare_part_category_id' => $product->sparePart->sparePartGroup->sparePartCategory->id,
+            'model_group_year_id'    => $product->sparePart->sparePartGroup->sparePartCategory->model_group_year_id,
+            'model_group_id'         => $product->sparePart->sparePartGroup->sparePartCategory->modelGroupYear->model_group_id,
+            'manufacturer_id'        => $product->sparePart->sparePartGroup->sparePartCategory->modelGroupYear->modelGroup->manufacturer_id
         ];
     }
 
