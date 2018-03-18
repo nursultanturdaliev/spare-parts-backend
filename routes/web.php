@@ -76,3 +76,4 @@ $router->group(['prefix' => 'api', 'middleware' => ['auth']], function () use ($
 
 $router->post('/auth/login', 'AuthController@postLogin');
 $router->post('/user/register', 'UserController@register');
+$router->put('/user/reset', 'UserController@reset');

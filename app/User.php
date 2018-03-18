@@ -13,6 +13,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property integer id
  * @property string firstname
  * @property string lastname
+ * @property mixed email
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
@@ -37,6 +38,15 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+    /**
+     * @param $email
+     * @return User
+     */
+    public static function findByEmail($email)
+    {
+        return self::where('email', '=', $email)->first();
+    }
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
