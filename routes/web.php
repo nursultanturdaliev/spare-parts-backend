@@ -68,6 +68,10 @@ $router->group(['prefix' => 'api', 'middleware' => ['auth']], function () use ($
     $router->get('products/{id}', [
         'as' => 'products_show', 'uses' => 'ProductController@show'
     ]);
+    
+    $router->patch('products/{id}', [
+        'as' => 'products_show', 'uses' => 'ProductController@patch'
+    ]);
 });
 
 $router->post('/auth/login', 'AuthController@postLogin');

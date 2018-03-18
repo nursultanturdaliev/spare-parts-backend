@@ -50,4 +50,33 @@ class ProductController extends Controller
 
         return new JsonResponse($this->getManager()->createData($resource)->toArray());
     }
+
+    public function patch($id, Request $request)
+    {
+        /** @var Product $product */
+        $product = Product::find($id);
+
+        $content = json_decode($request->getContent(), true);
+
+
+        if (!$product instanceof Product) {
+            return new JsonResponse([], 404);
+        }
+
+        if ($this->getUser()->id !== $product->user_id) {
+            return new JsonResponse([], 404);
+        }
+
+        $productData = $content['data']['attributes'];
+
+        $product->update([
+            'price'         => $productData['price'],
+            'quantity'      => $productData['quantity'],
+            'spare_part_id' => $productData['spare_part_id']
+        ]);
+
+        $resource = new Item($product, new ProductTransformer(), 'products');
+
+        return new JsonResponse($this->getManager()->createData($resource)->toArray());
+    }
 }
