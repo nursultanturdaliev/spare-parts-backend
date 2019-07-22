@@ -1,7 +1,7 @@
 
-###Serving The Application
+### Serving The Application
 
 `php -S localhost:8000 -t public`
 
-###Useful links
+### Useful links
 1. JSON api standards - http://jsonapi.org/
